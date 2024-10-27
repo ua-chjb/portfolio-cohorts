@@ -32,6 +32,7 @@ def two_categoricals_means(df, cat1, cat2, continuous=continuous, colors=px.colo
     gb2.columns = ["_".join(j) for j in gb2.columns]
     return px.imshow(gb2,  color_continuous_scale=colors).update_layout({
         "title": "Both categorical variables vs continuous",
+        "xaxis": {"showticklabels": False},
         "clickmode": "select",
     })
 
@@ -61,7 +62,7 @@ def bars_grouped_by_category(df, thecategory, continuous, colorscale):
     datum = figures[0].data + figures[1].data + figures[2].data + figures[3].data + figures[4].data + figures[5].data + figures[6].data + figures[7].data + figures[8].data + figures[9].data 
     
     print(len(datum))
-    fig = go.Figure(datum).update_layout({"title": "Continuous variables, broken up by Brand",
+    fig = go.Figure(datum).update_layout({"title": "Ingredients, by pizza brand cohort",
                                             "xaxis": {"title": "Brands"},
                                             "yaxis": {"title": "Continuous variable (% of Total)"}})
     return fig

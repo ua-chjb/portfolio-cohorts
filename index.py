@@ -1,15 +1,15 @@
-from dash import html, dcc
+from dash import html, dcc, _dash_renderer
 import dash_bootstrap_components as dbc
-import numpy as np
-
+import dash_mantine_components as dmc
 from charts import pizza, continuous, categoricals, fig_c, fig_e
+_dash_renderer._set_react_version("18.2.0")
 
 ############################### components ###################################
 
 Comp_A = dbc.Card(
     dbc.CardBody([
-        html.H1("Pizza Brands"),
-        html.P("Try to find unique segments by selecting different x and y variables.", className="subtitletext")
+        html.H1("Candy Brands"),
+        html.P("Visualizing the makeup of different cohorts", className="subtitle")
     ], className="titlecenter"), className="knucklepuck titlewidth"
 )
 
@@ -31,51 +31,41 @@ Comp_D = dbc.Card(
             html.Div([
                 html.Div([
 
-                    html.P("X:", className="selectors"),
-
-                    dcc.Dropdown(
-                        options=[j for j in continuous if j not in "id"],
+                    dmc.Select(
+                        label="Select",
+                        description="Choose two variables to chart",
+                        placeholder= "Ingredient",
+                        data=[j for j in continuous if j not in "id"],
                         value=continuous[1],
-                        multi=False,
-                        searchable=False,
-                        clearable=False,
                         id="dropdown1",
-                        placeholder="x",
-                        className="ddchildren",
-                        maxHeight=800,
-                    ),
+                        w=200,
+                        mb=10,
+                    )
+
 
                 ], className="displaythisinline"),
                 html.Div([
 
-                    html.P("Y:", className="selectors"),
-
-                    dcc.Dropdown(
-                        options=[j for j in continuous if j not in "id"],
+                    dmc.Select(
+                        placeholder= "Ingredient",
+                        data=[j for j in continuous if j not in "id"],
                         value=continuous[1],
-                        multi=False,
-                        searchable=False,
-                        clearable=False,
                         id="dropdown2",
-                        placeholder="y",
-                        className="ddchildren",
-                        maxHeight=800,
-                    ),
-                    
+                        w=200,
+                        mb=10,
+                    )
                 ], className="displaythisinline"),
-
-
             ], className="selectorleft flexdaddy"),
-            html.Div([
-                dcc.RadioItems(
-                    options=["random", "brand"],
-                    value="random",
-                    id="radioskycity",
-                    inline=False,
-                ),
-            ],className="selectorright"),
         ], className="flexdaddy height50p2")
     ]), className="knucklepuck"
+)
+
+Comp_DE = dbc.Card(
+    dbc.CardBody([
+        html.P(
+            "This analysis charts cohorts of candy brands. From examining various X-by-Y combinations, it looks like the cohorts sometimes have unique attributes. However, it is difficult to fully segment by all the information in just a 2-D space. ", className="description"
+            ),
+    ]), className="knucklepuck",
 )
 
 Comp_E = dbc.Card(
@@ -84,6 +74,11 @@ Comp_E = dbc.Card(
     ]), className="knucklepuck",
 )
 
+            # html.Div([
+            #     html.P(
+            #         "This analysis examines composition of ingredients, by pizza brand. By charting X vs Y, one can see that there are cluster-like spaces, based on pizza brand, that are distinct."
+            #     )
+            # ],className="selectorright"),
 
 
 ############################### skeleton ###################################
@@ -98,7 +93,8 @@ atf = html.Div([
         ], className="atf_charts_left"),
         html.Div([
             html.Div([
-                Comp_D
+                Comp_D,
+                Comp_DE
             ], className="selector_component"),
             html.Div([
                 Comp_C
@@ -115,7 +111,7 @@ btf = html.Div([
 ############################### aggregation ###################################
 
 
-lyt = dbc.Container([
+lyt = dmc.MantineProvider([
     atf,
     btf
 ])
