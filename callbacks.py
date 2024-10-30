@@ -15,7 +15,7 @@ def callbacks_baby(app):
         x = pizza[value1]
         y = pizza[value2]
         color = pizza["brand"]
-        return layout_func(px.scatter(x=x, y=y, color=color, opacity=0.6, color_discrete_sequence=px.colors.qualitative.T10).update_layout({
+        return layout_func(px.scatter(x=x, y=y, color=color, opacity=0.6).update_layout({
             "title": f"'{x.name}' by '{y.name}'",
             "xaxis": {"title": f"'{x.name}'"},
             "yaxis": {"title": f"'{y.name}'"},

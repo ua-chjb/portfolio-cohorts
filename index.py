@@ -63,7 +63,7 @@ Comp_D = dbc.Card(
 Comp_DE = dbc.Card(
     dbc.CardBody([
         html.P(
-            "This analysis charts cohorts of candy brands. From examining various X-by-Y combinations, it looks like the cohorts sometimes have unique attributes. However, it is difficult to fully segment by all the information in just a 2-D space. ", className="description"
+            "This analysis looks at cohorts of different candy brands. From examining various X-by-Y combinations, it looks like the cohorts sometimes have unique attributes. However, it is difficult to fully segment by all the information in just a 2-D space. ", className="description"
             ),
     ]), className="knucklepuck",
 )
@@ -74,11 +74,6 @@ Comp_E = dbc.Card(
     ]), className="knucklepuck",
 )
 
-            # html.Div([
-            #     html.P(
-            #         "This analysis examines composition of ingredients, by pizza brand. By charting X vs Y, one can see that there are cluster-like spaces, based on pizza brand, that are distinct."
-            #     )
-            # ],className="selectorright"),
 
 
 ############################### skeleton ###################################

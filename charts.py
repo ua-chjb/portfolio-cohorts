@@ -22,7 +22,7 @@ continuous = pull_continuous(pizza, categoricals)
 ############################### figures without callbacks ###################################
 # # # # # # # # # # # # # # # # # # fig_c # # # # # # # # # # # # # # # # # # # # 
 
-def two_categoricals_means(df, cat1, cat2, continuous=continuous, colors=px.colors.diverging.Spectral):
+def two_categoricals_means(df, cat1, cat2, continuous=continuous, colors=px.colors.diverging.Picnic_r):
     gb = pizza.groupby(["brand", "random"])[continuous].mean()
         
     summit = gb.sum(axis=0)
@@ -40,14 +40,14 @@ fig_c = two_categoricals_means(pizza, "brand", "random", continuous)
 
 # # # # # # # # # # # # # # # # # # fig_e # # # # # # # # # # # # # # # # # # # # 
 
-def bars_grouped_by_category(df, thecategory, continuous, colorscale):
+def bars_grouped_by_category(df, thecategory, continuous):
     
     gb = df.groupby([thecategory])[continuous].mean().drop(["id"], axis=1)
     
     summit = gb.sum(axis=0)
     gb1 = gb / summit
     
-    colors = cycle(iter(colorscale))
+    colors = cycle(iter(px.colors.qualitative.Plotly))
     
     figures = []
     
@@ -68,7 +68,7 @@ def bars_grouped_by_category(df, thecategory, continuous, colorscale):
     return fig
     
 
-fig_e = bars_grouped_by_category(pizza, "brand", continuous, colorscale=px.colors.qualitative.T10)
+fig_e = bars_grouped_by_category(pizza, "brand", continuous)
 
 ############################### layout ###################################
 
